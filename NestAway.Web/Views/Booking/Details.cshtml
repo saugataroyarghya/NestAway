@@ -1,0 +1,67 @@
+﻿@model NestAway.Web.Models.Booking
+
+@{
+    ViewData["Title"] = "Reservation Details";
+}
+
+<div class="card main-card">
+    <div class="card-header">
+        <h3>Reservation - Details</h3>
+    </div>
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Offer.Accommodation)
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-controller="Accommodation" asp-action="Details" asp-route-id="@Model.Offer.Accommodation.Id" class="text-dark">
+                    @Html.DisplayFor(model => model.Offer.Accommodation.Name)
+                </a>
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.User)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.User.Id)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.BookingDateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.BookingDateTime)
+            </dd>
+
+            <dt class="col-sm-2">
+                Arrival Date and Time
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ArrivalDate) @Html.DisplayFor(model => model.ArrivalTime)
+            </dd>
+
+            <dt class="col-sm-2">
+                Departure Date and Time
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DepartureDate) @Html.DisplayFor(model => model.DepartureTime)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NbPerson)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NbPerson)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalPrice) Tk. 
+            </dd>
+        </dl>
+
+        <a asp-action=@ViewBag.ReturnAction class="btn btn-outline-secondary">Return to the List</a>
+    </div>
+</div>

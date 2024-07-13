@@ -1,0 +1,66 @@
+﻿@model NestAway.Web.Models.Offer
+
+@{
+    ViewData["Title"] = "Offer Details";
+}
+
+
+<div class="card main-card">
+    <div class="card-header">
+        <h3>Offer - Details</h3>
+    </div>
+
+    <div class="card-body">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Accommodation)
+            </dt>
+            <dd class="col-sm-10">
+                <a asp-controller="Accommodation" asp-action="Details" asp-route-id="@Model.Accommodation.Id" class="text-dark">
+                    @Html.DisplayFor(model => model.Accommodation.Name)
+                </a>
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.AddingDateTime)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.AddingDateTime)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.StartAvailability)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.StartAvailability)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EndAvailability)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EndAvailability)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.PricePerNight)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.PricePerNight)
+            </dd>
+
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.CleaningFee)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.CleaningFee)
+            </dd>
+        </dl>
+
+        <div class="text-center">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Edit</a>
+            <a asp-action="Index" class="btn btn-outline-secondary">Back to the List</a>
+        </div>
+    </div>
+
+</div>

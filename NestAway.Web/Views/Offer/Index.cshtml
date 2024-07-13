@@ -1,0 +1,117 @@
+﻿@model IEnumerable<NestAway.Web.Models.Offer>
+
+@{
+    ViewData["Title"] = "Offer List";
+}
+
+<div class="card main-card">
+    <div class="card-body table-responsive">
+
+        <div class="card-header">
+            <div class="row align-items-center">
+
+                <div class="col">
+                    <h2>Offer</h2>
+                </div>
+
+                <div class="col-auto">
+                    <input id="searchInput" class="form-control" type="text" placeholder="Search">
+                </div>
+
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Accommodation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AddingDateTime)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.StartAvailability)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.EndAvailability)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PricePerNight)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CleaningFee)
+                    </th>
+                    <th style="text-align: right; padding-right: 1em;">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="resultTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Accommodation" asp-action="Details" asp-route-id="@item.Accommodation.Id" class="text-dark">
+                                @Html.DisplayFor(modelItem => item.Accommodation.Name)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.AddingDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartAvailability)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndAvailability)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricePerNight) Tk.
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CleaningFee) Tk.
+                        </td>
+                        <td style="text-align:right; padding-right:1em;">
+                            <form asp-action="View" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-journal-richtext" style="color:limegreen; padding-right:1em;"></i>
+                                </button>
+                            </form>
+
+                            <form asp-action="Details" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-eye-fill" style="color:dodgerblue; padding-right:1em;"></i>
+                                </button>
+                            </form>
+
+                            <form asp-action="Edit" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-pencil-fill" style="color:orange;  padding-right:1em;"></i>
+                                </button>
+                            </form>
+
+                            <form asp-action="Delete" asp-route-id="@item.Id" method="get" style="display: inline-block;">
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-trash-fill" style="color:red;"></i>
+                                </button>
+                            </form>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div>
+            <div style="float: left;">
+                <form asp-action="Create" method="get" style="display: inline-block;">
+                    <button class="btn btn-success" type="submit">
+                        <span class="bi bi-plus"></span> Create
+                    </button>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

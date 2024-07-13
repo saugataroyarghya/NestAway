@@ -1,0 +1,96 @@
+﻿@model IEnumerable<NestAway.Web.Models.Booking>
+
+@{
+    ViewData["Title"] = "Reservation List";
+}
+
+<div class="card main-card">
+    <div class="card-body table-responsive">
+
+        <div class="card-header">
+            <div class="row align-items-center">
+
+                <div class="col">
+                    <h2>Reservation</h2>
+                </div>
+
+                <div class="col-auto">
+                    <input id="searchInput" class="form-control" type="text" placeholder="Search">
+                </div>
+
+            </div>
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Offer.Accommodation)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.User)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.BookingDateTime)
+                    </th>
+                    <th>
+                        Arrival Date and Time
+                    </th>
+                    <th>
+                        Departure Date and Time
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NbPerson)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th style="text-align: right; padding-right: 1em;">
+                        Actions
+                    </th>
+                </tr>
+            </thead>
+
+            <tbody id="resultTable">
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-controller="Accommodation" asp-action="Details" asp-route-id="@item.Offer.Accommodation.Id" class="text-dark">
+                                @Html.DisplayFor(modelItem => item.Offer.Accommodation.Name)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.User.Email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.BookingDateTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ArrivalDate) @Html.DisplayFor(modelItem => item.ArrivalTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DepartureDate) @Html.DisplayFor(modelItem => item.DepartureTime)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NbPerson)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalPrice) Tk. 
+                        </td>
+                        <td style="text-align:right; padding-right:1em;">
+                            <form asp-action="Details" style="display: inline-block;">
+                                <input type="hidden" name="id" asp-for="@item.Id" />
+                                <input type="hidden" name="returnAction" value="@ViewBag.ReturnAction" />
+
+                                <button style="background: none; padding: 0px; border: none;" type="submit">
+                                    <i class="bi bi-eye-fill" style="color:dodgerblue; padding-right:1em;"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,150 @@
+﻿@model IEnumerable<NestAway.Web.Models.Offer>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    #mainContainer {
+        padding: 0;
+        max-width: 100%;
+    }
+
+    main.pb-3 {
+        padding-bottom: 0em !important;
+    }
+</style>
+
+<div class="container-fluid px-1 px-sm-4 mx-auto"
+     @{String background_url = "/image/background" + new Random().Next(1, 9) + ".jpg";}
+     style="background-image: url('@background_url');
+     background-size: cover; background-position: center; width: 100%; height: auto; padding-top: 12em; padding-bottom: 10em; padding-left: 2em; padding-right:2em;">
+
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-9 col-xl-8">
+            <div class="card shadow-lg p-3 mb-5 rounded">
+                <div class="card-header bg-white">
+                    <h4 class="mb-1">Find your perfect stay, anywhere with NestAway</h4>
+                    <small class="text-muted">From a cozy country cottage to a designer city apartment</small>
+                </div>
+
+                <form asp-action="Search" method="get">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label style="margin: 0.2em;">City</label>
+                            <input type="text" class="form-control" name="city" placeholder="Where are you going?" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label style="margin: 0.2em;">Arrival</label>
+                            <input type="date" class="form-control" name="arrivalDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label style="margin: 0.2em;">Departure</label>
+                            <input type="date" class="form-control" name="departureDate" min="@DateTime.Now.ToString("yyyy-MM-dd")" required>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label style="margin: 0.2em;">Traveler(s)</label>
+                            <input type="number" min="1" step="1" class="form-control" name="nbPerson" placeholder="1" required>
+                        </div>
+
+                        <div class="col-md-1 d-grid gap-2">
+                            <label> </label>
+                            <button type="submit" class="btn btn-success"><span class="bi bi-search"></span></button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+        @if (ViewBag.Search == null)
+        {
+            <h2>Latest Offers</h2>
+        }
+        else
+        {
+            <h2>Offers according to your search result!!</h2>
+        }
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" style="margin-top: 1em;">
+
+            @if (Model != null)
+            {
+                int offerNb = 0;
+
+                foreach (var item in Model)
+                {
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <div id="carousel-offer-@offerNb" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    @for (int i = 0; i < item.Accommodation.Pictures.Count; i++)
+                                    {
+                                        <button type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide-to="@i"
+                                                @if (i == 0) { @: class="active" aria-current="true"
+                                                } aria-label="Slide @i"></button>
+                                    }
+                                </div>
+
+                                <div class="carousel-inner">
+                                    @{ var firstImg = true;
+                                        foreach (Picture picture in item.Accommodation.Pictures)
+                                        {
+                                            <div class="carousel-item @if (firstImg) {
+                                            @:active
+                                            firstImg = false; }">
+                                                <img src="~/upload/@picture.FileName" class="d-block w-100 card-img-top" style="object-fit: cover; width: 100%; height: 15em;" alt="">
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carousel-offer-@offerNb" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+
+                            <div class="card-body">
+                                <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" style="color: black; text-decoration: none;">
+                                    <h4 class="mb-1">@item.Accommodation.Address.ShortAddress()</h4>
+                                </a>
+
+                                <p class="card-text">
+                                    By
+                                    @Html.DisplayFor(modelItem => item.Accommodation.User.FirstName) @Html.DisplayFor(modelItem => item.Accommodation.User.LastName)
+                                </p>
+
+                                <p>Available from @Html.DisplayFor(modelItem => item.StartAvailability) to @Html.DisplayFor(modelItem => item.EndAvailability)</p>
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="Offer" asp-action="View" asp-route-id="@item.Id.ToString()" class="btn btn-sm btn-outline-secondary">
+                                        See the Offer
+                                        </a>
+                                    </div>
+
+                                    <small class="text-success" style="font-weight: bold;">@Html.DisplayFor(modelItem => item.PricePerNight) Tk./Night</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    offerNb++;
+                }
+            }
+        </div>
+    </div>
+</div>
+
