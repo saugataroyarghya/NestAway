@@ -52,7 +52,9 @@ NestAway is an Airbnb clone developed as an academic project. The platform allow
 - Book your desired stay or experience.
 - Manage your bookings from your profile.
 
-
+## Pics
+- **Home Page**:  
+  ![Home Page](SS_Homepage.png)
 
 ## License
 
