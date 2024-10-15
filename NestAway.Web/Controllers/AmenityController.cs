@@ -1,7 +1,7 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -66,7 +66,7 @@ namespace NestAway.Web.Controllers
             else
             {
                 TempData["AlertType"] = "warning";
-                TempData["AlertMsg"] = "Equipement non valide !";
+                TempData["AlertMsg"] = "Invalid amenity!";
             }
 
             return RedirectToAction("ManageAmenities", new { roomId });
@@ -90,7 +90,7 @@ namespace NestAway.Web.Controllers
             else
             {
                 TempData["AlertType"] = "warning";
-                TempData["AlertMsg"] = "Une pièce doit contenir au moins 1 équipement !";
+                TempData["AlertMsg"] = "A room must have at least 1 amenity!";
             }
 
             return RedirectToAction("ManageAmenities", new { roomId });

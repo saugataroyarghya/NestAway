@@ -1,9 +1,9 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -45,7 +45,7 @@ namespace NestAway.Web.Views.Accommodation
             if (accommodation.Pictures.Count == 0)
             {
                 ViewBag.AlertType = "warning";
-                ViewBag.AlertMsg = "Veuillez ajouter au moins une photo à votre logement !";
+                ViewBag.AlertMsg = "Please add at least one photo to your accommodation!";
             }
 
             if (TempData["AlertType"] != null && TempData["AlertMsg"] != null)
@@ -75,7 +75,7 @@ namespace NestAway.Web.Views.Accommodation
                 if (await _context.Pictures.CountAsync(p => p.AccommodationId == (Guid)id) == 12)
                 {
                     TempData["AlertType"] = "danger";
-                    TempData["AlertMsg"] = "Vous avez atteint le nombre maximum de photos ! Une ou plusieurs photos n'ont pas pu être ajoutées.";
+                    TempData["AlertMsg"] = "You have reached the maximum number of photos! One or more photos could not be added.";
 
                     return RedirectToAction("ManagePictures", new { id });
                 }
@@ -102,7 +102,7 @@ namespace NestAway.Web.Views.Accommodation
         [Route("DeletePicture/{id:guid}")]
         public async Task<IActionResult> DeletePicture(Guid id, Guid accommodationId)
         {
-            // TODO: Check if user own the picture
+            // TODO: Check if user owns the picture
             var picture = await _context.Pictures.FindAsync(id);
 
             string filePath = Path.Combine(_environment.WebRootPath, "upload", picture.FileName);

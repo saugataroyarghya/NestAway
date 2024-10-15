@@ -1,10 +1,10 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using System.Text.Json;
 using System.Threading.Tasks;
 

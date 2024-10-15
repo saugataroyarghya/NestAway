@@ -1,6 +1,6 @@
-﻿using NestAway.Web.Models;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Models;
 
 namespace NestAway.Web.Data
 {

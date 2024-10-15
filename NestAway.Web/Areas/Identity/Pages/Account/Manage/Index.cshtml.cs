@@ -1,7 +1,7 @@
-﻿using NestAway.Web.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NestAway.Web.Models;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 

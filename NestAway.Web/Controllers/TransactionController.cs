@@ -1,6 +1,6 @@
-﻿using NestAway.Web.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using NestAway.Web.Data;
 using NestAway.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace NestAway.Web.Controllers

@@ -1,7 +1,7 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -40,7 +40,7 @@ namespace NestAway.Web.Controllers
             if (accommodation.Rooms.Count == 0)
             {
                 ViewBag.AlertType = "warning";
-                ViewBag.AlertMsg = "Veuillez ajouter au moins une pièce à votre logement !";
+                ViewBag.AlertMsg = "Please add at least one room to your accommodation!";
             }
 
             return View(accommodation);
@@ -69,7 +69,7 @@ namespace NestAway.Web.Controllers
                     if (tv == null && closet == null && (singleBedNumber == null || int.Parse(singleBedNumber) == 0) && (doubleBedNumber == null || int.Parse(doubleBedNumber) == 0))
                     {
                         ViewBag.AlertType = "danger";
-                        ViewBag.AlertMsg = "Veuillez ajouter au moins un équipement à votre pièce !";
+                        ViewBag.AlertMsg = "Please add at least one amenity to your room!";
                     }
                     else
                     {
@@ -88,7 +88,7 @@ namespace NestAway.Web.Controllers
                     if (bathtub == null && shower == null && washingMachine == null)
                     {
                         ViewBag.AlertType = "danger";
-                        ViewBag.AlertMsg = "Veuillez ajouter au moins un équipement à votre pièce !";
+                        ViewBag.AlertMsg = "Please add at least one amenity to your room!";
                     }
                     else
                     {
@@ -105,7 +105,7 @@ namespace NestAway.Web.Controllers
                     if (oven == null && freezer == null && coffeeMaker == null)
                     {
                         ViewBag.AlertType = "danger";
-                        ViewBag.AlertMsg = "Veuillez ajouter au moins un équipement à votre pièce !";
+                        ViewBag.AlertMsg = "Please add at least one amenity to your room!!";
                     }
                     else
                     {

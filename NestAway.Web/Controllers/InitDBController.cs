@@ -1,7 +1,6 @@
-﻿using NestAway.Web.Models;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System;
+using NestAway.Web.Models;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,15 +31,15 @@ namespace NestAway.Web.Controllers
 
                 returnText += "Roles created<br/>";
 
-                var userUser = new User { UserName = "user@user.fr", Email = "user@user.fr", FirstName = "Utilisateur", LastName = "Utilisateur" };
+                var userUser = new User { UserName = "user@user.com", Email = "user@user.com", FirstName = "User", LastName = "User" };
                 await _userManager.CreateAsync(userUser, "123aA_");
                 await _userManager.AddToRoleAsync(userUser, "User");
 
-                var hostUser = new User { UserName = "host@host.fr", Email = "host@host.fr", FirstName = "Hôte", LastName = "Hôte" };
+                var hostUser = new User { UserName = "host@host.com", Email = "host@host.com", FirstName = "Host", LastName = "Host" };
                 await _userManager.CreateAsync(hostUser, "123aA_");
                 await _userManager.AddToRoleAsync(hostUser, "Host");
 
-                var adminUser = new User { UserName = "admin@admin.fr", Email = "admin@admin.fr", FirstName = "Administrateur", LastName = "Administrateur" };
+                var adminUser = new User { UserName = "admin@admin.com", Email = "admin@admin.com", FirstName = "Administrator", LastName = "Administrator" };
                 await _userManager.CreateAsync(adminUser, "123aA_");
                 await _userManager.AddToRoleAsync(adminUser, "Admin");
 

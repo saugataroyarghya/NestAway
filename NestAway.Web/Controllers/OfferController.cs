@@ -1,10 +1,10 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -82,8 +82,6 @@ namespace NestAway.Web.Controllers
         }
 
         // POST: Offer/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
@@ -112,8 +110,6 @@ namespace NestAway.Web.Controllers
         }
 
         // POST: Offer/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(Guid id,
@@ -234,7 +230,7 @@ namespace NestAway.Web.Controllers
             await new BookmarkController(_context, _userManager.GetUserId(User)).Add(id);
 
             TempData["AlertType"] = "success";
-            TempData["AlertMsg"] = "Offre ajoutée aux favoris avec succès ! <a href=\"/Identity/Account/Manage/Bookmark\">Accédez à vos favoris</a>";
+            TempData["AlertMsg"] = "Offer successfully added to bookmarks! <a href=\"/Identity/Account/Manage/Bookmark\">Access your bookmarks</a>";
 
             return RedirectToAction("View", new { id });
         }
@@ -244,7 +240,7 @@ namespace NestAway.Web.Controllers
             await new BookmarkController(_context, _userManager.GetUserId(User)).Delete(id);
 
             TempData["AlertType"] = "warning";
-            TempData["AlertMsg"] = "Offre supprimée des favoris avec succès ! <a href=\"/Identity/Account/Manage/Bookmark\">Accédez à vos favoris</a>";
+            TempData["AlertMsg"] = "Offer successfully removed from bookmarks! <a href=\"/Identity/Account/Manage/Bookmark\">Access your bookmarks</a>";
 
             return RedirectToAction("View", new { id });
         }

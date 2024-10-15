@@ -1,7 +1,7 @@
-﻿using NestAway.Web.Data;
-using NestAway.Web.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using NestAway.Web.Data;
+using NestAway.Web.Models;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Diagnostics;
